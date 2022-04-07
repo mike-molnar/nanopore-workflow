@@ -17,15 +17,6 @@ genome_centromeres: "/path/to/nanopore_workflow/reference/GRCh38_centromeres.bed
 gene_list: "/path/to/nanopore_workflow/reference/GRCh38_genes.bed"
 ctcf_sites: "/path/to/nanopore_workflow/reference/GRCh38_CTCF_binding_sites.bed"
 promoters: "/path/to/nanopore_workflow/reference/GRCh38_promoters.bed"
-ctcf: "/path/to/nanopore_workflow/reference/GRCh38_CTCF_binding_sites.bed"
-repeats: "/path/to/nanopore_workflow/reference/GRCh38_repeats.bed"
-utr_5: "/path/to/nanopore_workflow/reference/GRCh38_5_UTR_exon.bed"
-utr_3: "/path/to/nanopore_workflow/reference/GRCh38_3_UTR_exon.bed"
-coding_exon: "/path/to/nanopore_workflow/reference/GRCh38_coding_exon.bed"
-exons: "/path/to/nanopore_workflow/reference/GRCh38_exons.bed"
-introns: "/path/to/nanopore_workflow/reference/GRCh38_introns.bed"
-LINEs: "/path/to/nanopore_workflow/reference/GRCh38_LINEs.bed"
-SINEs: "/path/to/nanopore_workflow/reference/GRCh38_SINEs.bed"
 
 # Input sample names to be analyzed
 samples: ['Sample1', 'Sample2']
