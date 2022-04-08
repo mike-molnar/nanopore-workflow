@@ -1,2 +1,2 @@
 # nanopore-workflow
-Snakemake worflow to process and filter long read data from Oxford Nanopore Technologies.
+Snakemake workflow to process and filter long read data from Oxford Nanopore Technologies.
