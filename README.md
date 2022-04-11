@@ -25,5 +25,6 @@ Modify the `config.yaml` file to represent the information for the necessary fil
 There are many dependencies, so it is best to create a new Conda environment using the `environment.yml` file in the main directory of the workflow:
 
 ```
-conda env create -f environment.yml
+conda env create -n workflow -f environment.yml
+conda activate workflow
 ```
