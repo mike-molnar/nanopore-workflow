@@ -1,36 +1,22 @@
-# Input the path information for programs and scripts
+# Input the path information for Conda and the workflow directories
 conda_dir: "/path/to/miniconda3/bin"
-medaka_dir: "/path/to/miniconda3/envs/medaka/bin"
-quast_dir: "/path/to/miniconda3/envs/quast/bin"
-workflow_dir: "/path/to/nanopore_workflow"
+workflow_dir: "/path/to/nanopore-workflow"
 
-# Input the genome information.
-chromosome_list: ['chr1','chr2','chr3','chr4','chr5','chr6','chr7','chr8','chr9','chr10','chr11','chr12','chr13',
-               'chr14','chr15','chr16','chr17','chr18','chr19','chr20','chr21','chr22','chrX','chrY']
-               
-reference_file: "/path/to/nanopore_workflow/reference/GRCh38_no_alt_analysis_set.fna"
-chromosome_size_list: "/path/to/nanopore_workflow/reference/GRCh38_chromosome_sizes.tsv"
-genome_length: 3100000000
-high_frequency_kmers: "/path/to/nanopore_workflow/reference/GRCh38_high_frequency_kmers.txt"
-genome_gaps: "/path/to/nanopore_workflow/reference/GRCh38_gaps_and_centromeres.bed"
-genome_centromeres: "/path/to/nanopore_workflow/reference/GRCh38_centromeres.bed"
-gene_list: "/path/to/nanopore_workflow/reference/GRCh38_genes.bed"
-ctcf_sites: "/path/to/nanopore_workflow/reference/GRCh38_CTCF_binding_sites.bed"
-promoters: "/path/to/nanopore_workflow/reference/GRCh38_promoters.bed"
-
-# Input sample names to be analyzed
-samples: ['Sample1', 'Sample2']
+# Input sample names to be analyzed.  The folder for each sample should be in the same directory as this file.
+samples: ['Sample_1', 'Sample_2']
 
 # Input which samples from above are normals or tumors.  This is only needed for DMRs and coverage plots.
-normals: ['Sample1']
-tumors: ['Sample2']
+# All tumors will be compared against all normals for DMRs and coverage plots.
+normals: ['Sample_1']
+tumors: ['Sample_2']
 
-Sample1:
-    fastq: Sample1/fastq/Sample1.fastq
-    fast5: "-d /path/to/Sample1/fast5"
-    summary: "-s Sample1/fastq/sequencing_summary.txt"
+# Input the sample information.  
+Sample_1:
+    fastq: Sample_1/fastq/Sample_1.fastq
+    fast5: "-d /path/to/Sample_1/fast5"
+    summary: "-s Sample_1/fastq/sequencing_summary.txt"
 
-Sample2:
-    fastq: Sample2/fastq/Sample2.fastq
-    fast5: "-d /path/to/Sample2/fast5"
-    summary: "-s Sample2/fastq/sequencing_summary.txt"
+Sample_2:
+    fastq: Sample_2/fastq/Sample_2.fastq
+    fast5: "-d /path/to/Sample_2/fast5"
+    summary: "-s Sample_2/fastq/sequencing_summary.txt"
