@@ -9,34 +9,21 @@ configfile: "config.yaml"
 # Get the path information for the programs and scripts
 root_dir = os.getcwd()
 conda_dir = config["conda_dir"]
-medaka_dir = config["medaka_dir"]
-quast_dir = config["quast_dir"]
 scripts_dir = config["workflow_dir"] + "/scripts"
 calls_header = config["workflow_dir"] + "/headers/nanopolish_call_header.tsv"
 frequency_header = config["workflow_dir"] + "/headers/nanopolish_frequency_header.tsv"
 dmr_header = config["workflow_dir"] + "/headers/dmr_header.tsv"
 
-# Declare the variables and files needed in the workflow
-reference = config["reference_file"]
-chromosomes = config["chromosome_list"]
-genome_length = config["genome_length"]
-chromosome_sizes = config["chromosome_size_list"]
-high_frequency_kmers = config["high_frequency_kmers"]
-genome_gaps = config["genome_gaps"]
-genome_centromeres = config["genome_centromeres"]
-
-# TODO: the user may not have these files for other genomes
-genes = config["gene_list"]
-ctcf = config["ctcf_sites"]
-promoters = config["promoters"]
-repeats = config["repeats"]
-utr_5 = config["utr_5"]
-utr_3 = config["utr_3"]
-coding_exon = config["coding_exon"]
-exons = config["exons"]
-introns = config["introns"]
-LINEs = config["LINEs"]
-SINEs = config["SINEs"]
+# Declare the variables and files needed for the reference genome
+reference: config["workflow_dir"] + "/reference/GRCh38_no_alt_analysis_set.fna"
+chromosome_sizes: config["workflow_dir"] + "/reference/GRCh38_chromosome_sizes.tsv"
+high_frequency_kmers: config["workflow_dir"] + "/reference/GRCh38_high_frequency_kmers.txt"
+genome_gaps: config["workflow_dir"] + "/reference/GRCh38_gaps.bed"
+gene_list: config["workflow_dir"] + "/reference/GRCh38_genes.bed"
+ctcf_sites: config["workflow_dir"] + "/reference/GRCh38_CTCF_binding_sites.bed"
+genome_length: 3100000000
+chromosomes: ['chr1','chr2','chr3','chr4','chr5','chr6','chr7','chr8','chr9','chr10','chr11','chr12','chr13',
+               'chr14','chr15','chr16','chr17','chr18','chr19','chr20','chr21','chr22','chrX','chrY']
 
 #===============================================================================================
 # Functions
@@ -133,7 +120,7 @@ rule structural_variants:
         
 rule DMRs:
     input:
-#        expand("{tumor}/analysis/dmrs/{normal}/plots", normal=config["normals"], tumor=config["tumors"]),  
+        expand("{tumor}/analysis/dmrs/{normal}/plots", normal=config["normals"], tumor=config["tumors"]),  
         expand("{tumor}/analysis/methylation/dmrs/{normal}/{tumor}.annotated_dmrs.bed", normal=config["normals"], tumor=config["tumors"])
 
 rule run_SVs:
