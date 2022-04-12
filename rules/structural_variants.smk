@@ -1,7 +1,3 @@
-#==============================================================
-# Find structural variants and convert to a standardized BEDPE. 
-#==============================================================
-
 # Find structural variants with cuteSV
 rule cuteSV:
     input:
