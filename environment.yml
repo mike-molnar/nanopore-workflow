@@ -1,4 +1,4 @@
-name: base
+name: nanopore_workflow
 channels:
   - conda-forge
   - bioconda
