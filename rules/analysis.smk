@@ -312,7 +312,7 @@ rule filter_structural_variants:
         DUP = "{sample}/structural_variants/{sample}.duplications.bed",
         INV = "{sample}/structural_variants/{sample}.inversions.bed",
         trans = "{sample}/structural_variants/{sample}.translocations.bedpe",
-        coverage = "{sample}/analysis/coverage/samtools_depth/{sample}.depth.500000_window.bed",
+        depth = "{sample}/analysis/coverage/samtools_depth/{sample}.depth.500000_window.bed",
         split_alignments = "{sample}/structural_variants/{sample}.split_alignments.bed",
         low_map = "{sample}/mapped/{sample}.low_mapped_reads.bed"
     output:
@@ -333,8 +333,8 @@ rule filter_structural_variants:
     threads: 1
     shell:
         "{conda_dir}/python {scripts_dir}/filter_SVs.py -ins {input.INS} -del {input.DEL} -dup {input.DUP} \
-        -inv {input.INV} -trans {input.trans} -depth {input.coverage} -split {input.split_alignments} \
-        -low_map {input.low_map} -gaps {genome_gaps} -cent {genome_centromeres} -ins_out {output.INS} -del_out \
+        -inv {input.INV} -trans {input.trans} -depth {input.depth} -split {input.split_alignments} \
+        -low_map {input.low_map} -gaps {genome_gaps} -ins_out {output.INS} -del_out \
         {output.DEL} -dup_out {output.DUP} -inv_out {output.INV} -trans_out {output.trans} -cnv_out \
         {output.CNVs} -cov {params.coverage} &> {log}"
         
