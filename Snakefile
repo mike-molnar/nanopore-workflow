@@ -10,6 +10,8 @@ configfile: "config.yaml"
 # Get the path information for the programs and scripts
 root_dir = os.getcwd()
 conda_dir = config["conda_dir"]
+medaka_dir = config["medaka_dir"]
+quast_dir = config["quast_dir"]
 scripts_dir = config["workflow_dir"] + "/scripts"
 calls_header = config["workflow_dir"] + "/headers/nanopolish_call_header.tsv"
 frequency_header = config["workflow_dir"] + "/headers/nanopolish_frequency_header.tsv"
