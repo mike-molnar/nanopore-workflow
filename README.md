@@ -22,9 +22,13 @@ Modify the `config.yaml` file to represent the information for the necessary fil
 
 ## Dependencies
 
-There are many dependencies, so it is best to create a new Conda environment using the `environment.yml` file in the main directory of the workflow:
+There are many dependencies, so it is best to create a new Conda environment using the YAML files in the `env` directory.  There is a YAML file for the workflow, and another for Medaka.  You will need to install a separate environment for QUAST if you are going to run the de novo assembly portion of the workflow. Change to the `env` directory and create the environments with Conda:
 
 ```
-conda env create -n workflow -f environment.yml
-conda activate workflow
+conda env create -n nanopore-workflow -f environment_nanopore-workflow.yml
+conda env create -n medaka -f environment_medaka.yml
+conda env create -n quast -f environment_quast.yml
+conda activate nanopore-workflow
 ```
+
+Before running the workflow you will have to `export` the paths of the three environments to your `PATH` variable.
