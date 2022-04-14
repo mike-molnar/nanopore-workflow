@@ -84,7 +84,7 @@ rule medaka_consensus:
         "{sample}/analysis/benchmarks/assembly/{sample}.medaka_consensus.txt"
     threads: 8
     shell:
-        "{conda_dir}/medaka_consensus -i {input.reads} -d {input.assembly} \
+        "{medaka_dir}/medaka_consensus -i {input.reads} -d {input.assembly} \
         -o {params.out_folder} -t {threads} &> {log}"
 
 # Calculate Flye assembly statistics with QUAST
@@ -105,7 +105,7 @@ rule quast_flye:
         "{sample}/analysis/benchmarks/analysis/assembly/quast_flye.txt"
     threads: 8
     shell:
-        "{conda_dir}/python {quast_dir}/quast {params.genome_size} -r {reference} \
+        "{quast_dir}/python {quast_dir}/quast {params.genome_size} -r {reference} \
 		-o {params.output_folder} -t {threads} {params.del_temp} {input} &> {log}"
 
 # Calculate Racon polished assembly statistics with QUAST
@@ -126,7 +126,7 @@ rule quast_racon:
         "{sample}/analysis/benchmarks/analysis/assembly/quast_racon.txt"
     threads: 8
     shell:
-        "{conda_dir}/python {quast_dir}/quast {params.genome_size} -r {reference} \
+        "{quast_dir}/python {quast_dir}/quast {params.genome_size} -r {reference} \
 		-o {params.output_folder} -t {threads} {params.del_temp} {input} &> {log}"
 
 # Calculate Medaka polished assembly statistics with QUAST
@@ -147,5 +147,5 @@ rule quast_medaka:
         "{sample}/analysis/benchmarks/analysis/assembly/quast_medaka.txt"
     threads: 8
     shell:
-        "{conda_dir}/python {quast_dir}/quast {params.genome_size} -r {reference} \
+        "{quast_dir}/python {quast_dir}/quast {params.genome_size} -r {reference} \
 		-o {params.output_folder} -t {threads} {params.del_temp} {input} &> {log}"
