@@ -31,4 +31,4 @@ conda env create -n quast -f environment_quast.yml
 conda activate nanopore-workflow
 ```
 
-Before running the workflow you will have to `export` the paths of the three environments to your `PATH` variable.
+Before running the workflow you will need to `export` the paths of the three environments to your `PATH` variable.
