@@ -31,7 +31,7 @@ rule medaka_variant:
         "{sample}/analysis/benchmarks/temp_files/medaka_variant/{sample}.{regions}.medaka_variant.txt"
     threads: 8
     shell:
-        "{conda_dir}/medaka_variant {params.phased_output} -f {reference} -i {input.bam} -t {threads} \
+        "{medaka_dir}/medaka_variant {params.phased_output} -f {reference} -i {input.bam} -t {threads} \
         -o {wildcards.sample}/temp_files/medaka_variant/{wildcards.regions} -r {wildcards.regions} &> {log}"
 
 # Zip the vcf for merging
