@@ -298,4 +298,3 @@ dependencies:
   - xz=5.2.5=h516909a_1
   - zlib=1.2.11=h166bdaf_1014
   - zstd=1.5.2=ha95c52a_0
-prefix: /.mounts/labs/simpsonlab/users/mmolnar/code/miniconda3/envs/R_env
