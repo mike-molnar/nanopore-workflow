@@ -28,7 +28,15 @@ There are many dependencies, so it is best to create a new Conda environment usi
 conda env create -n nanopore-workflow -f environment_nanopore-workflow.yml
 conda env create -n medaka -f environment_medaka.yml
 conda env create -n quast -f environment_quast.yml
+conda env create -n R_env -f R_env.yml
 conda activate nanopore-workflow
 ```
 
-Before running the workflow you will need to `export` the paths of the three environments to your `PATH` variable.
+Before running the workflow you will need to `export` the paths of the three environments to your `PATH` variable:
+
+```
+export PATH="/path/to/conda/envs/nanopore-workflow/bin:$PATH"
+export PATH="/path/to/conda/envs/medaka/bin:$PATH"
+export PATH="/path/to/conda/envs/quast/bin:$PATH"
+export PATH="/path/to/conda/envs/R_env/bin:$PATH"
+```
