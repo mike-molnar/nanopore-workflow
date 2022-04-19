@@ -35,6 +35,7 @@ You will have to replace `queue_name` and `project_name` with the necessary valu
 There are many dependencies, so it is best to create a new Conda environment using the YAML files in the `env` directory.  There is a YAML file for the workflow, and another for Medaka.  You will need to install a separate environment for QUAST if you are going to run the de novo assembly portion of the workflow. Change to the `env` directory and create the environments with Conda:
 
 ```
+cd /path/to/nanopore-worflow/env
 conda env create -n nanopore-workflow -f nanopore-workflow_env.yml
 conda env create -n medaka -f medaka_env.yml
 conda env create -n quast -f quast_env.yml
@@ -42,7 +43,7 @@ conda env create -n R_env -f R_env.yml
 conda activate nanopore-workflow
 ```
 
-Before running the workflow you will need to `export` the paths of the three environments to your `PATH` variable:
+Before running the workflow you will need to `export` the paths of the four environments to your `PATH` variable:
 
 ```
 export PATH="/path/to/conda/envs/nanopore-workflow/bin:$PATH"
