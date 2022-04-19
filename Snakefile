@@ -37,12 +37,12 @@ def get_coverage(sample_name):
     file_name = str(sample_name) + "/analysis/nanoplot/" + str(sample_name) + "NanoStats.txt"
     if os.path.exists(file_name):
         f = open(file_name)
-#        pattern = "number_of_bases"
-        pattern = "Total bases"
+        pattern = "number_of_bases"
+#        pattern = "Total bases"
         for line in f:
             if re.search(pattern, line):
-#                total_bases = line.split()[1].strip()
-                total_bases = line.split(":")[1].strip().replace(',', '')
+                total_bases = line.split()[1].strip()
+#                total_bases = line.split(":")[1].strip().replace(',', '')
                 return float(total_bases)/3100000000
 
 # Get the list of regions for the workflow
@@ -69,9 +69,10 @@ rule all_but_assembly:
     input:
         expand("{sample}/fastq/{sample}.fastq.gz", sample=config["samples"]),
         expand("{sample}/mapped/{sample}.phased.bam.bai", sample=config["samples"]),
+        expand("{sample}/mapped/{sample}.phased.methylated.bam.bai", sample=config["samples"]),
+        expand("{sample}/mapped/{sample}.b_allele_frequency.longshot.bed", sample=config["samples"])
         expand("{sample}/methylation/{sample}.nanopolish_frequency.tsv", sample=config["samples"]),
         expand("{sample}/methylation/{sample}.nanopolish_calls.tsv.gz", sample=config["samples"]),
-        expand("{sample}/mapped/{sample}.phased.methylated.bam.bai", sample=config["samples"]),
         expand("{tumor}/analysis/methylation/dmrs/{normal}/{tumor}.annotated_dmrs.bed", normal=config["normals"], tumor=config["tumors"]),
         expand("{sample}/analysis/structural_variants/{sample}.insertions.bed", sample=config["samples"]),
         expand("{sample}/analysis/structural_variants/{sample}.deletions.bed", sample=config["samples"]),
@@ -101,7 +102,7 @@ rule assembly:
 
 rule mapping:
     input:
-        expand("{sample}/analysis/coverage/{sample}.b_allele_frequency.longshot.bed", sample=config["samples"])
+        expand("{sample}/mapped/{sample}.b_allele_frequency.longshot.bed", sample=config["samples"])
         
 rule call_methylation:
     input:
@@ -123,7 +124,6 @@ rule structural_variants:
         
 rule DMRs:
     input:
-        expand("{tumor}/analysis/dmrs/{normal}/plots", normal=config["normals"], tumor=config["tumors"]),  
         expand("{tumor}/analysis/methylation/dmrs/{normal}/{tumor}.annotated_dmrs.bed", normal=config["normals"], tumor=config["tumors"])
 
 rule run_SVs:
@@ -145,15 +145,15 @@ rule run_SV_analysis:
 
 rule run_coverage_analysis:
     input:
-        expand("{sample}/analysis/coverage/plots/{normal}/{sample}.depth.{chromosome}.pdf", normal=config["normals"], sample=config["samples"], chromosome=chromosomes),
+        
         expand("{sample}/analysis/coverage/samtools_depth/{sample}.depth.100_window.bed", sample=config["samples"]),
         expand("{sample}/analysis/coverage/samtools_depth/{sample}.depth.1000_window.bed", sample=config["samples"]),
         expand("{sample}/analysis/coverage/samtools_depth/{sample}.depth.10000_window.bed", sample=config["samples"]),
         expand("{sample}/analysis/coverage/samtools_depth/{sample}.depth.100000_window.bed", sample=config["samples"]),
         expand("{sample}/analysis/coverage/samtools_depth/{sample}.depth.500000_window.bed", sample=config["samples"]),
+        expand("{sample}/analysis/coverage/plots/{normal}/{sample}.depth.pdf", normal=config["normals"], sample=config["tumors"]),
         expand("{sample}/analysis/coverage/plots/{normal}/{sample}.small_chr.pdf", normal=config["normals"], sample=config["tumors"]),
         expand("{sample}/analysis/coverage/plots/{normal}/{sample}.large_chr.pdf", normal=config["normals"], sample=config["tumors"]),
-        expand("{sample}/analysis/coverage/plots/{normal}/{sample}.depth.pdf", normal=config["normals"], sample=config["tumors"]),
         expand("{sample}/analysis/coverage/plots/{normal}/{sample}.depth.{chromosome}.pdf", normal=config["normals"], sample=config["tumors"], chromosome=chromosomes)
 
 rule run_all_analysis:
@@ -173,5 +173,3 @@ rule run_all_analysis:
         expand("{sample}/analysis/coverage/plots/{normal}/{sample}.small_chr.pdf", normal=config["normals"], sample=config["tumors"]),
         expand("{sample}/analysis/coverage/plots/{normal}/{sample}.large_chr.pdf", normal=config["normals"], sample=config["tumors"]),
         expand("{sample}/analysis/coverage/plots/{normal}/{sample}.depth.{chromosome}.pdf", normal=config["normals"], sample=config["tumors"], chromosome=chromosomes)
-
-      
