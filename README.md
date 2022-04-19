@@ -51,10 +51,25 @@ export PATH="/path/to/conda/envs/quast/bin:$PATH"
 export PATH="/path/to/conda/envs/R_env/bin:$PATH"
 ```
 
+### nanopore-workflow dependencies:
+- bcftools
+- bedtools
+- cutesv
+- flye
+- longshot
+- nanofilt
+- nanoplot
+- nanopolish
+- snakemake
+- sniffles
+- survivor
+- svim
+- whatshap
+- winnowmap
+
 ### R_env dependencies:
 - bioconductor-karyoploter
 - bioconductor-txdb.hsapiens.ucsc.hg38.knowngene
 - bioconductor-org.hs.eg.db
-- r-tidyverse
 - bioconductor-dss
-
+- r-tidyverse
