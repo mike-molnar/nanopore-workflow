@@ -67,7 +67,7 @@ rule all_but_assembly:
         expand("{sample}/fastq/{sample}.fastq.gz", sample=config["samples"]),
         expand("{sample}/mapped/{sample}.phased.bam.bai", sample=config["samples"]),
         expand("{sample}/mapped/{sample}.phased.methylated.bam.bai", sample=config["samples"]),
-        expand("{sample}/mapped/{sample}.b_allele_frequency.longshot.bed", sample=config["samples"])
+        expand("{sample}/mapped/{sample}.b_allele_frequency.longshot.bed", sample=config["samples"]),
         expand("{sample}/methylation/{sample}.nanopolish_frequency.tsv", sample=config["samples"]),
         expand("{sample}/methylation/{sample}.nanopolish_calls.tsv.gz", sample=config["samples"]),
         expand("{tumor}/analysis/methylation/dmrs/{normal}/{tumor}.annotated_dmrs.bed", normal=config["normals"], tumor=config["tumors"]),
@@ -142,7 +142,6 @@ rule run_SV_analysis:
 
 rule run_coverage_analysis:
     input:
-        
         expand("{sample}/analysis/coverage/samtools_depth/{sample}.depth.100_window.bed", sample=config["samples"]),
         expand("{sample}/analysis/coverage/samtools_depth/{sample}.depth.1000_window.bed", sample=config["samples"]),
         expand("{sample}/analysis/coverage/samtools_depth/{sample}.depth.10000_window.bed", sample=config["samples"]),
