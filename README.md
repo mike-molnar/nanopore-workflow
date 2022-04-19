@@ -42,8 +42,9 @@ export PATH="/path/to/conda/envs/R_env/bin:$PATH"
 ```
 
 ### R_env dependencies
-bioconductor-karyoploter
-bioconductor-txdb.hsapiens.ucsc.hg38.knowngene
-bioconductor-org.hs.eg.db
-r-tidyverse
-bioconductor-dss
+- bioconductor-karyoploter
+- bioconductor-txdb.hsapiens.ucsc.hg38.knowngene
+- bioconductor-org.hs.eg.db
+- r-tidyverse
+- bioconductor-dss
+
