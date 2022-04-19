@@ -40,3 +40,10 @@ export PATH="/path/to/conda/envs/medaka/bin:$PATH"
 export PATH="/path/to/conda/envs/quast/bin:$PATH"
 export PATH="/path/to/conda/envs/R_env/bin:$PATH"
 ```
+
+### R_env dependencies
+bioconductor-karyoploter
+bioconductor-txdb.hsapiens.ucsc.hg38.knowngene
+bioconductor-org.hs.eg.db
+r-tidyverse
+bioconductor-dss
