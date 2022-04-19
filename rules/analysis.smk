@@ -241,7 +241,7 @@ rule plot_genome_coverage:
         "{sample}/analysis/benchmarks/analysis/coverage/plots/{normal}/{sample}.depth.txt"
     threads: 1
     shell:
-        "{conda_dir}/Rscript {scripts_dir}/karyoploter_coverage.R {input.normal} {input.sample} \
+        "{R_env_dir}/Rscript {scripts_dir}/karyoploter_coverage.R {input.normal} {input.sample} \
         {output} {params.genome} {wildcards.normal} {wildcards.sample} &> {log}"
 
 rule plot_genome_coverage_small_chr:
@@ -260,7 +260,7 @@ rule plot_genome_coverage_small_chr:
         "{sample}/analysis/benchmarks/analysis/coverage/plots/{normal}/{sample}.small_chr.txt"
     threads: 1
     shell:
-        "{conda_dir}/Rscript {scripts_dir}/karyoploter_coverage_small_chr.R {input.normal} {input.sample} \
+        "{R_env_dir}/Rscript {scripts_dir}/karyoploter_coverage_small_chr.R {input.normal} {input.sample} \
         {output} {params.genome} {wildcards.normal} {wildcards.sample} &> {log}"
         
 rule plot_genome_coverage_large_chr:
@@ -279,7 +279,7 @@ rule plot_genome_coverage_large_chr:
         "{sample}/analysis/benchmarks/analysis/coverage/plots/{normal}/{sample}.large_chr.txt"
     threads: 1
     shell:
-        "{conda_dir}/Rscript {scripts_dir}/karyoploter_coverage_large_chr.R {input.normal} {input.sample} \
+        "{R_env_dir}/Rscript {scripts_dir}/karyoploter_coverage_large_chr.R {input.normal} {input.sample} \
         {output} {params.genome} {wildcards.normal} {wildcards.sample} &> {log}"
         
 rule plot_chr_coverage:
@@ -300,7 +300,7 @@ rule plot_chr_coverage:
         "{sample}/analysis/benchmarks/analysis/coverage/plots/{normal}/{sample}.{chromosomes}.plot_chr_coverage.txt"
     threads: 1
     shell:
-        "{conda_dir}/Rscript {scripts_dir}/karyoploter_coverage_chr.R {input.normal_cov} {input.sample_cov} \
+        "{R_env_dir}/Rscript {scripts_dir}/karyoploter_coverage_chr.R {input.normal_cov} {input.sample_cov} \
         {input.normal_baf} {input.sample_baf} {wildcards.normal} {wildcards.sample} {params.genome} \
         {wildcards.chromosomes} {output} &> {log}"
         
