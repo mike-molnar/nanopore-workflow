@@ -20,7 +20,7 @@ cp Snakefile config.yaml /path/to/samples
 
 Modify the `config.yaml` file to represent the information for the necessary files and directories of your sample(s). The workflow is currently designed to have a single FASTQ, and a single sequencing summary file in a folder named `fastq` that is in a folder named after the sample.  The `config.yaml` file provides an example of how to format the initial files and directories before running the workflow.
 
-## To run on a grid engine:
+## To run on a grid engine
 
 There are a few different grid engines, so the exact format may be different for your particular grid engine.  To run everything except the de novo assembly on a Univa grid engine:
 
