@@ -14,14 +14,14 @@ frequency_header = config["workflow_dir"] + "/headers/nanopolish_frequency_heade
 dmr_header = config["workflow_dir"] + "/headers/dmr_header.tsv"
 
 # Declare the variables and files needed for the reference genome
-reference: config["workflow_dir"] + "/reference/GRCh38_no_alt_analysis_set.fna"
-chromosome_sizes: config["workflow_dir"] + "/reference/GRCh38_chromosome_sizes.tsv"
-high_frequency_kmers: config["workflow_dir"] + "/reference/GRCh38_high_frequency_kmers.txt"
-genome_gaps: config["workflow_dir"] + "/reference/GRCh38_gaps.bed"
-gene_list: config["workflow_dir"] + "/reference/GRCh38_genes.bed"
-ctcf_sites: config["workflow_dir"] + "/reference/GRCh38_CTCF_binding_sites.bed"
-genome_length: 3100000000
-chromosomes: ['chr1','chr2','chr3','chr4','chr5','chr6','chr7','chr8','chr9','chr10','chr11','chr12','chr13',
+reference = config["workflow_dir"] + "/reference/GRCh38_no_alt_analysis_set.fna"
+chromosome_sizes = config["workflow_dir"] + "/reference/GRCh38_chromosome_sizes.tsv"
+high_frequency_kmers = config["workflow_dir"] + "/reference/GRCh38_high_frequency_kmers.txt"
+genome_gaps = config["workflow_dir"] + "/reference/GRCh38_gaps.bed"
+gene_list = config["workflow_dir"] + "/reference/GRCh38_genes.bed"
+ctcf_sites = config["workflow_dir"] + "/reference/GRCh38_CTCF_binding_sites.bed"
+genome_length = 3100000000
+chromosomes = ['chr1','chr2','chr3','chr4','chr5','chr6','chr7','chr8','chr9','chr10','chr11','chr12','chr13',
                'chr14','chr15','chr16','chr17','chr18','chr19','chr20','chr21','chr22','chrX','chrY']
 
 #===============================================================================================
