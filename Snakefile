@@ -1,10 +1,6 @@
 import os
 import re
 
-# To run all of the analysis on Univa:
-#   snakemake --jobs 500 --keep-going --latency-wait 30 --cluster "qsub -cwd -V -o snakemake.output.log -e snakemake.error.log 
-#   -q queue_name -P project_name -pe smp {threads} -l h_vmem={params.memory_per_thread} -l h_rt={params.run_time} -b y" run_all_analysis
-
 configfile: "config.yaml"
 
 # Get the path information for the programs and scripts
