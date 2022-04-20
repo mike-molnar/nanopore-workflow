@@ -58,9 +58,10 @@ export PATH="/path/to/conda/envs/R_env/bin:$PATH"
 - cutesv
 - flye
 - longshot
-- nanofilt
-- nanoplot
+- nanofilt v2.8.0
+- nanoplot v1.20.0
 - nanopolish
+- seaborn v0.10.0
 - snakemake
 - sniffles
 - survivor
