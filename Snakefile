@@ -34,12 +34,12 @@ def get_coverage(sample_name):
     file_name = str(sample_name) + "/analysis/nanoplot/" + str(sample_name) + "NanoStats.txt"
     if os.path.exists(file_name):
         f = open(file_name)
-        pattern = "number_of_bases"
-#        pattern = "Total bases"
+#        pattern = "number_of_bases"
+        pattern = "Total bases"
         for line in f:
             if re.search(pattern, line):
-                total_bases = line.split()[1].strip()
-#                total_bases = line.split(":")[1].strip().replace(',', '')
+#                total_bases = line.split()[1].strip()
+                total_bases = line.split(":")[1].strip().replace(',', '')
                 return float(total_bases)/3100000000
 
 # Get the list of regions for the workflow
