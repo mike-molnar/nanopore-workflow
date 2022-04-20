@@ -58,7 +58,7 @@ rule sniffles:
         "{sample}/analysis/logs/structural_variants/sniffles/{sample}.sniffles.log"
     benchmark:
         "{sample}/analysis/benchmarks/structural_variants/sniffles/{sample}.sniffles.txt"
-    threads: 4
+    threads: 8
     shell:
         "{conda_dir}/sniffles --input {input.bam} --snf {output.snf} --vcf {output.vcf} --non-germline\
          --minsupport {params.min_reads} --max-splits-base {params.max_splits} -t {threads} &> {log}"
