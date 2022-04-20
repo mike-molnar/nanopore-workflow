@@ -47,9 +47,10 @@ rule sniffles:
         bam = "{sample}/mapped/{sample}.phased.bam",
         bai = "{sample}/mapped/{sample}.phased.bam.bai"
     output:
-        protected("{sample}/structural_variants/sniffles/{sample}.sniffles_unfiltered.bedpe")
+        snf = protected("{sample}/structural_variants/sniffles/{sample}.sniffles.snf"),
+        vcf = protected("{sample}/structural_variants/sniffles/{sample}.sniffles.vcf")
     params:
-        memory_per_thread="32G",
+        memory_per_thread="8G",
         run_time="1:0:0:0",
         min_reads = "2",
         max_splits = "1"
@@ -57,32 +58,27 @@ rule sniffles:
         "{sample}/analysis/logs/structural_variants/sniffles/{sample}.sniffles.log"
     benchmark:
         "{sample}/analysis/benchmarks/structural_variants/sniffles/{sample}.sniffles.txt"
-    threads: 1
+    threads: 4
     shell:
-        "{conda_dir}/sniffles -s {params.min_reads} --max_num_splits {params.max_splits} \
-        -t {threads} -m {input.bam} -b {output} &> {log}"
+        "{conda_dir}/sniffles --input {input.bam} --snf {output.snf} --vcf {output.vcf} --non-germline\
+         --minsupport {params.min_reads} --max-splits-base {params.max_splits} -t {threads} &> {log}"
                 
 # Standardize the sniffles BEDPE
-rule standardize_sniffles_bedpe:
+rule vcf2bedpe_sniffles:
     input:
-        "{sample}/structural_variants/sniffles/{sample}.sniffles_unfiltered.bedpe"
+        "{sample}/structural_variants/sniffles/{sample}.sniffles.vcf"
     output:
         protected("{sample}/structural_variants/sniffles/{sample}.sniffles.bedpe")
     params:
-        memory_per_thread="4G",
-        run_time="0:1:0:0",
-        fix_ranges="'$2>=0 && $3>=0 && $5>=0 && $6>=0 && $6>=$5 && $3>=$2' OFS='\t'",
-        grep_unresolved="-v 'UNRESOLVED'",
-        select_columns="'{{print $1,$2,$3,$4,$5,$6,$11,$17,$12}}' OFS='\t'",
-        header="#chrom1\tstart1\tend1\tchrom2\tstart2\tend2\tsv_type\tsv_length\tsupport"
+        memory_per_thread="8G",
+        run_time="0:1:0:0"
     log:
-        "{sample}/analysis/logs/structural_variants/sniffles/{sample}.standardize_sniffles_bedpe.log"
+        "{sample}/analysis/logs/structural_variants/svim/{sample}.vcf2bedpe_svim.log"
     benchmark:
-        "{sample}/analysis/benchmarks/structural_variants/sniffles/{sample}.standardize_sniffles_bedpe.txt"
+        "{sample}/analysis/benchmarks/structural_variants/svim/{sample}.vcf2bedpe_svim.txt"
     threads: 1
     shell:
-        "awk {params.fix_ranges} {input} 2> {log} | grep {params.grep_unresolved} | \
-        awk {params.select_columns} 2>> {log} | sed '1s/.*/{params.header}/' > {output} 2>> {log}"
+        "{conda_dir}/python {scripts_dir}/vcf2bedpe_svim.py {input} {output} &> {log}"
         
 # Find structural variants with SVIM
 rule svim:
