@@ -23,7 +23,6 @@ rule medaka_variant:
     params:
         memory_per_thread="8G",
         run_time="2:0:0:0",
-        project_name="simpsonlab",
         phased_output="-p"
     log:
         "{sample}/analysis/logs/temp_files/medaka_variant/{sample}.{regions}.medaka_variant.log"
@@ -42,8 +41,7 @@ rule zip_medaka_vcf:
         temp("{sample}/temp_files/medaka_variant/{regions}/round_1_phased.vcf.gz")
     params:
         memory_per_thread="4G",
-        run_time="0:1:0:0",
-        project_name="simpsonlab"
+        run_time="0:1:0:0"
     log:
         "{sample}/analysis/logs/temp_files/medaka_variant/{sample}.{regions}.zip_medaka_vcf.log"
     benchmark:
@@ -61,7 +59,6 @@ rule index_medaka_vcf:
     params:
         memory_per_thread="4G",
         run_time="0:1:0:0",
-        project_name="simpsonlab",
         file_type="vcf"
     log:
         "{sample}/analysis/logs/temp_files/medaka_variant/{sample}.{regions}.index_medaka_vcf.log"
@@ -81,7 +78,6 @@ rule merge_medaka_vcf:
     params:
         memory_per_thread="4G",
         run_time="0:1:0:0",
-        project_name="simpsonlab",
         concat="-a -O v",
         sort="-O z"
     log:
@@ -102,7 +98,6 @@ rule index_merged_medaka_vcf:
     params:
         memory_per_thread="4G",
         run_time="0:1:0:0",
-        project_name="simpsonlab",
         file_type="vcf"
     log:
         "{sample}/analysis/logs/mapped/{sample}.index_merged_medaka_vcf.log"
@@ -124,7 +119,6 @@ rule haplotag_bam:
     params:
         memory_per_thread="16G",
         run_time="1:0:0:0",
-        project_name="simpsonlab",
         RG="--ignore-read-groups"
     log:
         "{sample}/analysis/logs/temp_files/whatshap/{regions}/{sample}.{regions}.phased.log"
@@ -143,8 +137,7 @@ rule merge_bam:
         protected("{sample}/mapped/{sample}.phased.bam")
     params:
         memory_per_thread="16G",
-        run_time="1:0:0:0",
-        project_name="simpsonlab"
+        run_time="1:0:0:0"
     log:
         "{sample}/analysis/logs/mapped/{sample}.merge_bam.log"
     benchmark:
@@ -161,8 +154,7 @@ rule haplotag_bam_index:
         protected("{sample}/mapped/{sample}.phased.bam.bai")
     params:
         memory_per_thread="4G",
-        run_time="0:1:0:0",
-        project_name="simpsonlab"
+        run_time="0:1:0:0"
     log:
         "{sample}/analysis/logs/mapped/{sample}.haplotag_index.log"
     benchmark:
@@ -185,7 +177,6 @@ rule longshot:
     params:
         memory_per_thread="16G",
         run_time="1:0:0:0",
-        project_name="simpsonlab",
         thresholds="-c 2 -C 200 -I 10000 -e 1"
     log:
         "{sample}/analysis/logs/temp_files/longshot/{sample}.{regions}.longshot.log"
@@ -204,8 +195,7 @@ rule zip_phased_bam:
         temp("{sample}/temp_files/longshot/{sample}.{regions}.vcf.gz")
     params:
         memory_per_thread="8G",
-        run_time="0:1:0:0",
-        project_name="simpsonlab"
+        run_time="0:1:0:0"
     log:
         "{sample}/analysis/logs/temp_files/longshot/{sample}.{regions}.zip.log"
     benchmark:
@@ -223,7 +213,6 @@ rule index_phased_bam:
     params:
         memory_per_thread="8G",
         run_time="0:1:0:0",
-        project_name="simpsonlab",
         file_type="vcf"
     log:
         "{sample}/analysis/logs/temp_files/longshot/{sample}.{regions}.index.log"
@@ -243,7 +232,6 @@ rule merge_longshot_vcf:
     params:
         memory_per_thread="8G",
         run_time="0:1:0:0",
-        project_name="simpsonlab",
         concat="-a -O v",
         sort="-O z"
     log:
@@ -264,7 +252,6 @@ rule index_longshot_vcf:
     params:
         memory_per_thread="8G",
         run_time="0:1:0:0",
-        project_name="simpsonlab",
         file_type="vcf"
     log:
         "{sample}/analysis/logs/mapped/{sample}.index_longshot_vcf.log"
@@ -284,7 +271,6 @@ rule extract_longshot_vcf:
     params:
         memory_per_thread="8G",
         run_time="0:1:0:0",
-        project_name="simpsonlab",
         view_param="'PASS'",
         query_param="'%CHROM\t%POS\t%AC\n'"
     log:
@@ -304,8 +290,7 @@ rule calculate_longshot_b_allele_frequency:
         protected("{sample}/mapped/{sample}.b_allele_frequency.longshot.bed")
     params:
         memory_per_thread="8G",
-        run_time="0:1:0:0",
-        project_name="simpsonlab"
+        run_time="0:1:0:0"
     log:
         "{sample}/analysis/logs/mapped/{sample}.calculate_longshot_b_allele_frequency.log"
     benchmark:
