@@ -7,7 +7,6 @@ rule nanofilt:
     params:
         memory_per_thread="4G",
         run_time="1:0:0:0",
-        project_name="simpsonlab",
         quality="7",
         min_length="500",
         max_length="500000"
@@ -28,8 +27,7 @@ rule bgzip_index:
         "{sample}/fastq/{sample}.fastq.gz.gzi"
     params:
         memory_per_thread="4G",
-        run_time="0:1:0:0",
-        project_name="simpsonlab"
+        run_time="0:1:0:0"
     log:
         "{sample}/analysis/logs/fastq/{sample}.bgzip_index.log"
     benchmark:
@@ -48,7 +46,6 @@ rule winnowmap:
     params:
         memory_per_thread="8G",
         run_time="2:0:0:0",
-        project_name="simpsonlab",
         preset_options="-ax map-ont",
         include_MD_tag="--MD"
     log:
@@ -69,8 +66,7 @@ rule winnowmap_index:
         temp("{sample}/mapped/{sample}.bam.bai")
     params:
         memory_per_thread="4G",
-        run_time="0:1:0:0",
-        project_name="simpsonlab"
+        run_time="0:1:0:0"
     log:
         "{sample}/analysis/logs/mapped/{sample}.winnowmap_index.log"
     benchmark:
