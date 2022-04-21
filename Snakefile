@@ -110,15 +110,6 @@ rule methylation_mapping:
     input:
         expand("{sample}/mapped/{sample}.phased.methylated.bam.bai", sample=config["samples"])
 
-rule structural_variants:
-    input:
-        expand("{sample}/structural_variants/{sample}.insertions.bed", sample=config["samples"]),
-        expand("{sample}/structural_variants/{sample}.deletions.bed", sample=config["samples"]),
-        expand("{sample}/structural_variants/{sample}.duplications.bed", sample=config["samples"]),
-        expand("{sample}/structural_variants/{sample}.inversions.bed", sample=config["samples"]),
-        expand("{sample}/structural_variants/{sample}.translocations.bedpe", sample=config["samples"]),
-        expand("{sample}/structural_variants/{sample}.CNVs.bed", sample=config["samples"])
-        
 rule DMRs:
     input:
         expand("{tumor}/analysis/methylation/dmrs/{normal}/{tumor}.annotated_dmrs.bed", normal=config["normals"], tumor=config["tumors"])
