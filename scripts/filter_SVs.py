@@ -69,7 +69,6 @@ parser.add_argument('-depth', '--coverage-depth', type=str, required=False)
 parser.add_argument('-split', '--split-alignments', type=str, required=False)
 parser.add_argument('-low_map', '--low-mapping-regions', type=str, required=True)
 parser.add_argument('-gaps', '--genome-gaps', type=str, required=True)
-parser.add_argument('-cent', '--centromeres', type=str, required=True)
 # define output BED files
 parser.add_argument('-ins_out', '--insertions-output', type=str, required=False)
 parser.add_argument('-del_out', '--deletions-output', type=str, required=False)
