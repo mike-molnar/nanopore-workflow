@@ -5,17 +5,24 @@ Snakemake workflow to process and filter long read data from Oxford Nanopore Tec
 
 ## Installation instructions
 
-Download the latest code from GitHub, and change to the workflow directory:
+Download the latest code from GitHub:
 
 ```
 git clone https://github.com/mike-molnar/nanopore-workflow.git
-cd nanopore-workflow
 ```
 
-Copy the `Snakefile` and `config.yaml` files to the directory that you want to run the workflow:
+Before running the workflow, you will need to download the reference genome. I have not included the download as part of the workflow because it is designed to run a cluster that may not have internet access.  You can use a local copy of GRCh38 if you have one, but the chromosomes must be named `chr1, chr2, ...` , and the reference can only contain the autosomes and sex chromosomes. To download the reference genome and index it, change to the reference directory of the workflow and run the script:
 
 ```
-cp Snakefile config.yaml /path/to/samples
+cd /path/to/nanopore-workflow/reference
+chmod u+x download_reference.sh
+./download_reference.sh
+```
+
+To run the workflow copy the `Snakefile` and `config.yaml` files to the directory that you want to run the workflow:
+
+```
+cp /path/to/nanopore-workflow/Snakefile /path/to/nanopore-workflow/config.yaml /path/to/samples
 ```
 
 Modify the `config.yaml` file to represent the information for the necessary files and directories of your sample(s). The workflow is currently designed to have a single FASTQ, and a single sequencing summary file in a folder named `fastq` that is in a folder named after the sample.  The `config.yaml` file provides an example of how to format the initial files and directories before running the workflow.
